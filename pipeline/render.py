@@ -232,7 +232,11 @@ def sc_final(im, lt):
         d.rounded_rectangle((x0 + 64, ry + 22, x0 + 138, ry + 96), 16, fill=(12, 13, 16))
         d.rectangle((x0 + 84, ry + 40, x0 + 118, ry + 78), outline=col, width=4)
         d.line((x0 + 92, ry + 52, x0 + 110, ry + 52), fill=col, width=3); d.line((x0 + 92, ry + 64, x0 + 110, ry + 64), fill=col, width=3)
-        d.text((x0 + 165, ry + 18), t1, font=fnt("InterDisplay-Bold.otf", 42), fill=col)
+        ft = fnt("InterDisplay-Bold.otf", 28); tw = d.textlength(tag, font=ft)
+        avail = (x0 + w - 80 - tw - 30) - (x0 + 165) - 20
+        fs = 42
+        while fs > 28 and d.textlength(t1, font=fnt("InterDisplay-Bold.otf", fs)) > avail: fs -= 2
+        d.text((x0 + 165, ry + 18 + (42 - fs) / 2), t1, font=fnt("InterDisplay-Bold.otf", fs), fill=col)
         d.text((x0 + 165, ry + 70), t2, font=fnt("Inter-Regular.otf", 30), fill=mix(GREY, (17, 18, 22), rq))
         ft = fnt("InterDisplay-Bold.otf", 28); tw = d.textlength(tag, font=ft)
         d.rounded_rectangle((x0 + w - 80 - tw - 30, ry + 22, x0 + w - 70, ry + 66), 22,
